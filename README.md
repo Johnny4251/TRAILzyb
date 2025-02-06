@@ -19,8 +19,10 @@ Part 97 rules & regulations.
 
 ## Installation
 
-To build and install the KISSZYB executables, run the following commands:
+To build and install, execute the following:
 ```sh
-make
-sudo make install
+git clone https://github.com/Johnny4251/TRAILzyb
+cd TRAILzyb
+chmod +x install.sh
+sudo ./install.sh
 ```
