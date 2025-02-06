@@ -30,3 +30,6 @@ sudo ./install.sh
 ```
 
 Ensure Direwolf AX.25 Software TNC is installed and active during use. The Direwolf project can be found at [Direwolf GitHub Repository](https://github.com/wb2osz/direwolf). 
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
