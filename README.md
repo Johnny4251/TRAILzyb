@@ -1,5 +1,5 @@
 # TRAILzyb
-<ins>T</ins>ransmission of <ins>R</ins>emote <ins>A</ins>rea <ins>I</ins>nformation on <ins>L</ins>andscapes
+### <ins>T</ins>ransmission of <ins>R</ins>emote <ins>A</ins>rea <ins>I</ins>nformation on <ins>L</ins>andscapes
 
 John Pertell  
 SUNY Polytechnic Institute  
@@ -16,3 +16,11 @@ Part 97 rules & regulations.
 
 ## Current Supported Operating Systems
 - Ubuntu v24.04.1 desktop
+
+## Installation
+
+To build and install the KISSZYB executables, run the following commands:
+```sh
+make
+sudo make install
+```
