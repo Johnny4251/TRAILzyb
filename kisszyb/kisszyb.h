@@ -1,4 +1,4 @@
-<LeftMouse>#ifndef KISSZYB_H
+#ifndef KISSZYB_H
 #define KISSZYB_H
 
 #include <stddef.h>  // for size_t
