@@ -16,3 +16,11 @@ Part 97 rules & regulations.
 
 ## Current Supported Operating Systems
 - Ubuntu v24.04.1 desktop
+
+## Installation
+
+To build and install the KISSZYB executables, run the following commands:
+```sh
+make
+sudo make install
+```
