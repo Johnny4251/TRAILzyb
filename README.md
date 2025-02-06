@@ -1,5 +1,5 @@
 # TRAILzyb
-<ins>T</ins>ransmission of <ins>R</ins>emote <ins>A</ins>rea <ins>I</ins>nformation on <ins>L</ins>andscapes
+### <ins>T</ins>ransmission of <ins>R</ins>emote <ins>A</ins>rea <ins>I</ins>nformation on <ins>L</ins>andscapes
 
 John Pertell  
 SUNY Polytechnic Institute  
