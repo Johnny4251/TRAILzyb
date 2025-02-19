@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+    echo "The install script must be run as root."
+    exit 1
+fi
+
 sudo apt update
 
 echo "Setting up python venv"
