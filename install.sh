@@ -13,3 +13,9 @@ cd kisszyb
 make
 sudo make install
 cd ..
+
+echo "Defining Executables"
+chmod +x capture
+cd cap_image
+chmod +x clear_cache
+cd ..

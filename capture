@@ -1,0 +1,5 @@
+#!/bin/bash
+source venv/bin/activate
+cd cap_image
+python3 cap.py
+cd ..

@@ -6,3 +6,6 @@
 *.jpg
 *.jpeg
 venv/
+__pycache__/
+*.pyc
+*.pyo
