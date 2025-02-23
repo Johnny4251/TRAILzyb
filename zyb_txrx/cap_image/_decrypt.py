@@ -3,23 +3,23 @@ import numpy as np
 import os
 
 def load_zyb_file(filename):
-    """Loads the .zyb file and converts it into a color image."""
+    """Loads the .zyb file and converts it into a grayscale image."""
     try:
         with open(filename, "r") as f:
-            pixel_values = [list(map(int, line.strip().split(','))) for line in f]
+            pixel_values = [int(line.strip()) for line in f]
     except FileNotFoundError:
         print("Error: image.zyb not found.")
         exit()
     
-    # Estimate the original image dimensions (assuming it was 250x250)
+    # Estimate the original image dimensions (assuming it was square or near-square)
     length = len(pixel_values)
     side = int(np.sqrt(length))  # Approximate side length of square image
     
     if side * side != length:
         print("Warning: Pixel count does not form a perfect square. Image may be distorted.")
     
-    # Reshape pixel values into a 3D NumPy array (for RGB image)
-    image_array = np.array(pixel_values[:side * side], dtype=np.uint8).reshape((side, side, 3))
+    # Reshape pixel values into a 2D NumPy array
+    image_array = np.array(pixel_values[:side * side], dtype=np.uint8).reshape((side, side))
     
     return image_array
 
@@ -34,4 +34,3 @@ def decrypt():
 
 if __name__ == "__main__":
     decrypt()
-
