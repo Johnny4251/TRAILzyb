@@ -1,4 +1,0 @@
-#!/bin//bash
-
-rm *.png image.zyb
-rm -d -r __pycache__

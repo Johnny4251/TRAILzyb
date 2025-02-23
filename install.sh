@@ -21,6 +21,11 @@ cd ..
 
 echo "Defining Executables"
 chmod +x capture
-cd cap_image
+cd zyb_txrx/cap_image
 chmod +x clear_cache
+cd ../..
+
+echo "Making files"
+cd zyb_txrx
+make
 cd ..
