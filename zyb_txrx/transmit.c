@@ -6,8 +6,6 @@
 #include "config.h"
 #include <kisszyb.h>
 
-#define FRAME_WAIT_TIME_SEC 2
-
 #define DEST_CALLSIGN "CQTEST-0"
 #define SRC_CALLSIGN "CQTEST-1"
 #define ZYB_IMAGE_PATH "cap_image/image.zyb"
@@ -82,7 +80,7 @@ int main(int argc, char **argv) {
 			fflush(stdout);
 		}
 
-		sleep(FRAME_WAIT_TIME_SEC);
+		sleep(config.wait_time_sec);
 		
 	}
 	printf("\n");
