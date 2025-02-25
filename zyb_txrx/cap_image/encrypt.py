@@ -1,82 +1,60 @@
-import cv2
 import os
 import glob
-import numpy as np
+import cv2
 
 def get_latest_image():
-    """Finds the most recent image file in the current directory."""
+    """
+    Finds the most recent .png file in the current directory.
+    Returns the filename (str) or None if none is found.
+    """
     images = sorted(glob.glob("*.png"), key=os.path.getmtime, reverse=True)
     return images[0] if images else None
 
-def quantize_image(image):
-    # Quantize the image with 2 bits for red, 3 bits for green, and 2 bits for blue
-    r_factor = 2 ** (8 - 2)  # 2 bits for red
-    g_factor = 2 ** (8 - 3)  # 3 bits for green
-    b_factor = 2 ** (8 - 2)  # 2 bits for blue
+def encrypt_to_zyb(image_path, output_path="image.zyb"):
+    """
+    Read the image at `image_path` using OpenCV, convert each pixel
+    to a single 7-bit value (2 bits R, 3 bits G, 2 bits B), and save
+    all pixel values (0–127) line-by-line to `output_path`.
+    """
+    # Read the image in BGR format
+    img = cv2.imread(image_path)
+    if img is None:
+        print(f"Could not open image: {image_path}")
+        return
 
-    # Split channels
-    b, g, r = cv2.split(image)
+    height, width, _ = img.shape
+    
+    with open(output_path, "w") as f:
+        # Iterate through each pixel
+        for row in range(height):
+            for col in range(width):
+                b, g, r = img[row, col]
 
-    # Quantize each channel separately
-    r = (r // r_factor) * r_factor
-    g = (g // g_factor) * g_factor
-    b = (b // b_factor) * b_factor
+                # Quantize each channel:
+                #  - R (2 bits) => 0..3   (divide by 64 => 256/4=64)
+                #  - G (3 bits) => 0..7   (divide by 32 => 256/8=32)
+                #  - B (2 bits) => 0..3   (divide by 64 => 256/4=64)
+                r_2bits = r // 64  # range 0..3
+                g_3bits = g // 32  # range 0..7
+                b_2bits = b // 64  # range 0..3
 
-    # Merge channels back
-    quantized = cv2.merge((b, g, r))
-    return quantized
+                # Combine into 7 bits: 
+                #   bit 6..5 = R (2 bits)
+                #   bit 4..2 = G (3 bits)
+                #   bit 1..0 = B (2 bits)
+                # This yields a value from 0..127
+                color_7bit = (r_2bits << 5) | (g_3bits << 2) | b_2bits
 
-def apply_sharpening(image):
-    # Define a simple sharpening kernel
-    sharpening_kernel = np.array([[0, -1, 0],
-                                  [-1, 5, -1],
-                                  [0, -1, 0]])
-    # Apply the kernel to the image
-    sharpened_image = cv2.filter2D(image, -1, sharpening_kernel)
-    return sharpened_image
-
-def apply_edge_overlay(image):
-    # Convert to grayscale and detect edges using Canny
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    edges = cv2.Canny(gray, 50, 150)
-
-    # Create a mask where edges are white
-    edge_mask = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
-
-    # Overlay edges on the original image
-    enhanced_image = cv2.addWeighted(image, 0.8, edge_mask, 0.2, 0)
-    return enhanced_image
+                f.write(str(color_7bit) + "\n")
 
 def encrypt():
-    latest_image = get_latest_image()
+    latest_png = get_latest_image()
+    if not latest_png:
+        print("No .png images found in the current directory.")
+        return
 
-    if latest_image is None:
-        print("Error: No image files found.")
-        exit()
-
-    # Read the image in color
-    image = cv2.imread(latest_image, cv2.IMREAD_COLOR)
-
-    # Resize while maintaining aspect ratio with a max of 250x250
-    w_new, h_new = 250, 250
-    image_resized = cv2.resize(image, (w_new, h_new), interpolation=cv2.INTER_AREA)
-
-    # Apply quantization
-    quantized_image = quantize_image(image_resized)
-
-    # Apply sharpening
-    sharpened_image = apply_sharpening(quantized_image)
-
-    # Apply edge enhancement
-    enhanced_image = apply_edge_overlay(sharpened_image)
-
-    # Save to "image.zyb" with newline-separated pixel values (RGB)
-    with open("image.zyb", "w") as f:
-        for row in enhanced_image:
-            for pixel in row:
-                f.write(f"{pixel[0]},{pixel[1]},{pixel[2]}\n")
-
-    print(f"Processed image saved as image.zyb from {latest_image}")
+    encrypt_to_zyb(latest_png, "image.zyb")
+    print(f"Converted {latest_png} to 7-bit values and saved to image.zyb.")
 
 if __name__ == "__main__":
     encrypt()

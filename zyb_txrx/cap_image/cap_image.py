@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 import datetime
 
 def capture_image(capture_width=250, capture_height=250, sharpen=False):
