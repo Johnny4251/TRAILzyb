@@ -37,13 +37,12 @@ def encrypt_to_zyb(image_path, output_path="image.zyb"):
                 r_2bits = r // 64  # range 0..3
                 g_3bits = g // 32  # range 0..7
                 b_2bits = b // 64  # range 0..3
-
                 # Combine into 7 bits: 
                 #   bit 6..5 = R (2 bits)
                 #   bit 4..2 = G (3 bits)
                 #   bit 1..0 = B (2 bits)
                 # This yields a value from 0..127
-                color_7bit = (r_2bits << 5) | (g_3bits << 2) | b_2bits
+                color_7bit = (r_2bits << 5) | (g_3bits << 2) | b_2bits | 1
 
                 f.write(str(color_7bit) + "\n")
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <kisszyb.h>
 
@@ -48,7 +49,7 @@ int main(int argc, char **argv) {
 
 		if(strlen(row) > 2) {
 		    for(int i=0; i<HEIGHT; i++) {
-			    fprintf(file, "%d\n", (int)row[i+2]);
+			    fprintf(file, "%d\n", (uint8_t)row[i+2]);
 		    }
 		    frames_recvd += 1;
 		    

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -59,7 +60,7 @@ int main(int argc, char **argv) {
 	for (int i=0; i < HEIGHT; i++) {
 		char buff[WIDTH] = {0};
 		for (int j=0; j<WIDTH; j++) {
-			buff[j] = (char)img_array[i][j];
+			buff[j] = (uint8_t)img_array[i][j];
 		}
 
 		strcpy(frame.data, buff);
@@ -79,6 +80,16 @@ int main(int argc, char **argv) {
 			printf("] %.0f%% COMPLETE", percent);
 			fflush(stdout);
 		}
+		
+
+		if(i % 10 == 0) {
+			sleep(2);
+		} else {
+			// hard code 500ms
+			usleep(500000);
+		}
+
+
 
 		sleep(config.wait_time_sec);
 		
