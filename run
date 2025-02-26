@@ -1,0 +1,4 @@
+#!/bin/bash
+./capture
+cd zyb_txrx/
+./transmit

@@ -20,6 +20,7 @@ sudo make install
 cd ..
 
 echo "Defining Executables"
+chmod +x run
 chmod +x capture
 cd zyb_txrx/cap_image
 chmod +x clear_cache
