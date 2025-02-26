@@ -5,6 +5,10 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
+echo "installing TRAILzyb..."
+sleep 1
+echo "Press 'q' when complete"
+sleep 5
 sudo apt update
 sudo apt-get install xterm
 sudo apt-get install python3-venv
@@ -22,8 +26,10 @@ sudo make install
 cd ..
 
 echo "Defining Executables"
+chmod +x daemon-logs
 chmod +x zybd
 chmod +x run
+chmod +x daemon-setup
 chmod +x capture
 cd zyb_txrx/cap_image
 chmod +x clear_cache
@@ -33,3 +39,6 @@ echo "Making files"
 cd zyb_txrx
 make
 cd ..
+
+echo "setting up daemon"
+./daemon-setup

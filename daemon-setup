@@ -1,0 +1,47 @@
+#!/bin/bash
+
+SERVICE_NAME="zybtxd"
+EXECUTABLE="zyb-txd"
+USER=$(whoami)
+CWD=$(pwd)
+
+SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
+
+echo "Creating systemd service file at $SERVICE_FILE..."
+
+sudo bash -c "cat > $SERVICE_FILE" <<EOL
+[Unit]
+Description=$SERVICE_NAME Service
+After=network.target
+
+[Service]
+WorkingDirectory=$CWD
+ExecStart=$CWD/$EXECUTABLE
+Restart=always
+RestartSec=10
+User=$USER
+Group=audio
+SupplementaryGroups=audio
+StandardOutput=journal
+StandardError=journal
+Environment="PULSE_SERVER=unix:/run/user/1000/pulse/native"
+Environment="DISPLAY=:0"
+Environment="XDG_RUNTIME_DIR=/run/user/1000"
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+echo "Setting executable permissions..."
+chmod +x "$CWD/$EXECUTABLE"
+
+echo "Reloading systemd and enabling service..."
+sudo systemctl daemon-reload
+sudo systemctl start $SERVICE_NAME.service
+sudo systemctl enable $SERVICE_NAME.service
+
+echo "Checking service status..."
+sudo systemctl status $SERVICE_NAME.service
+
+echo "Done! You can view logs using: journalctl -u $SERVICE_NAME.service -f"
+

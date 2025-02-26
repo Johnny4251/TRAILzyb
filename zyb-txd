@@ -10,10 +10,10 @@ HOST = '0.0.0.0'
 PORT = 7887
 
 def run_wolf():
-    os.system('xterm -e "direwolf"')
+    os.system('direwolf')
 
 def capture():
-    os.system('xterm -e "./run"')
+    os.system('./run')
 
 def start_server():
     addr = (HOST, PORT)
@@ -46,7 +46,10 @@ def start_server():
                 capture_thread.join()
             elif data == "exit":
                 break
-            else: print("bad frame")        
+            else: 
+                print("bad frame")
+                response = "invalid event"
+                client_sock.send(response.encode('utf-8'))
             client_sock.close()
 
         except Exception as e:
