@@ -7,6 +7,7 @@ fi
 
 sudo apt update
 sudo apt-get install xterm
+sudo apt-get install python3-venv
 
 echo "Setting up python venv"
 python3 -m venv venv
