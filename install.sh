@@ -6,6 +6,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 sudo apt update
+sudo apt-get install xterm
 
 echo "Setting up python venv"
 python3 -m venv venv
@@ -20,6 +21,7 @@ sudo make install
 cd ..
 
 echo "Defining Executables"
+chmod +x zybd
 chmod +x run
 chmod +x capture
 cd zyb_txrx/cap_image
