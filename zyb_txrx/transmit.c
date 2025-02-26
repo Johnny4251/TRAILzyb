@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 		
 
 		if(i % 10 == 0) {
-			sleep(2);
+			sleep(3);
 		} else {
 			// hard code 500ms
 			usleep(500000);
