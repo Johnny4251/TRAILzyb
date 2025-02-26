@@ -3,60 +3,57 @@ import numpy as np
 import cv2
 
 def decode_zyb(zyb_path, width=250):
-    """
-    Decodes a .zyb file (which contains per-pixel 7-bit values, one per line)
-    into an OpenCV image (NumPy array in BGR format), given a fixed width 
-    and an automatically computed height.
-    
-    :param zyb_path: Path to .zyb file
-    :param width:    Image width in pixels (default=250)
-    :return:         Decoded image (NumPy array, BGR)
-    """
-    # Read all lines (each line is an integer 0–127)
+    valid_data = []
+
     with open(zyb_path, "r") as f:
-        lines = [line.strip() for line in f.readlines()]
+        for line_number, line in enumerate(f, start=1):
+            line_str = line.strip()
 
-    # Convert text lines to integers
-    data = [int(x) for x in lines]
+            try:
+                val = int(line_str)
+            except ValueError:
+                print(f"Warning: Invalid integer on line {line_number}. Truncating and stopping.")
+                break
 
-    # Compute height based on the total number of values
-    num_pixels = len(data)
-    if num_pixels % width != 0:
-        raise ValueError(
-            f"Total pixel count ({num_pixels}) is not a multiple of width ({width})."
-        )
+            if not 0 <= val <= 127:
+                print(f"Warning: Value {val} out of [0..127] range on line {line_number}. Truncating and stopping.")
+                break
+
+            valid_data.append(val)
+
+    num_pixels = len(valid_data)
+    remainder = num_pixels % width
+    if remainder != 0:
+        print(f"Note: Truncating last {remainder} pixel(s) to make rows complete.")
+        num_pixels -= remainder
+        valid_data = valid_data[:num_pixels]
+
+    if num_pixels == 0:
+        raise ValueError("No valid pixel data found after reading/truncating.")
+
     height = num_pixels // width
-
-    # Create an empty BGR image (8-bit)
     img = np.zeros((height, width, 3), dtype=np.uint8)
 
-    for i, val in enumerate(data):
-        # Each val is 7 bits: R in bits 6..5, G in bits 4..2, B in bits 1..0
+    for i, val in enumerate(valid_data):
         r_2bits = (val >> 5) & 0b11      # 2 bits for Red
         g_3bits = (val >> 2) & 0b111    # 3 bits for Green
         b_2bits = val & 0b11           # 2 bits for Blue
 
-        # Convert to 8-bit channels by "expanding"
         r = r_2bits * 64    # 0..3 -> 0..255 in steps of 64
         g = g_3bits * 32    # 0..7 -> 0..255 in steps of 32
         b = b_2bits * 64    # 0..3 -> 0..255 in steps of 64
 
         row = i // width
         col = i % width
-        # OpenCV uses BGR order
         img[row, col] = [b, g, r]
 
     return img
 
 def decrypt():
     zyb_file = 'image.zyb'
-    # We only specify the width; the height is inferred from the file
     width = 250
 
-    # Decode .zyb to a BGR image (NumPy array)
     img = decode_zyb(zyb_file, width=width)
-
-    # Write the image as .png
     out_png = "image.png"
     cv2.imwrite(out_png, img)
     print(f"Decoded {zyb_file} (width={width}, height={img.shape[0]}) and saved as {out_png}")
