@@ -12,6 +12,7 @@ sleep 5
 sudo apt update
 sudo apt-get install xterm
 sudo apt-get install python3-venv
+sudo apt install direwolf
 
 echo "Setting up python venv"
 python3 -m venv venv
