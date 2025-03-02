@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import datetime
+import time
 
 def capture_image(capture_width=250, capture_height=250, sharpen=False):
     capture_width = max(250, capture_width)
@@ -12,7 +13,9 @@ def capture_image(capture_width=250, capture_height=250, sharpen=False):
         print("Error: Could not open camera.")
         exit()
 
-    ret, frame = cap.read()
+    for _ in range(10):
+        ret, frame = cap.read()
+        time.sleep(0.2)
 
     if not ret:
         print("Error: Could not read frame.")
