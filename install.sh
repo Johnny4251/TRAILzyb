@@ -27,6 +27,7 @@ sudo make install
 cd ..
 
 echo "Defining Executables"
+chmod +x zyb-fired
 chmod +x daemon-logs
 chmod +x zybd
 chmod +x run

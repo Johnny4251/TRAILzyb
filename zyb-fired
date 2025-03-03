@@ -1,12 +1,14 @@
+#!/usr/bin/python3
+
 import socket
 from datetime import datetime
 import time
 
-HOST = '127.0.0.1'
+HOST = "127.0.0.1"
 PORT = 7887
 
 MORNING_TIME = "07:00:00"
-NIGHT_TIME   = "17:00:00"
+NIGHT_TIME   = "16:32:00"
 
 def main():
     try:
@@ -22,9 +24,10 @@ def main():
         curr_time = time_now.strftime("%H:%M:%S")
 
         if curr_time == MORNING_TIME or curr_time == NIGHT_TIME:
+            print("Capturing image..")
             event = "capture picture now"
             client_sock.send(event.encode())
-        else: time.sleep(0.4)
+        else: time.sleep(0.2)
     
 
 
