@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
 	printf("Closed %s\n", IMAGE_PATH);
 	
 	printf("Sending end frames\n");
-	for (int i=0; i < 3; i++) {
+	for (int i=0; i < 15; i++) {
 		strcpy(frame.data, "END");
 		send_to_direwolf(&frame, "127.0.0.1", 8001);
 		sleep(1);
