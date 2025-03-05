@@ -20,8 +20,6 @@ def start_server():
     serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     try:
-        wolf_thread = threading.Thread(target=run_wolf)
-        capture_thread = threading.Thread(target=capture)
         serv_sock.bind(addr)
         serv_sock.listen(1)
     except Exception as e:
@@ -37,6 +35,9 @@ def start_server():
 
             data = client_sock.recv(BUFFER_LEN).decode('utf-8').strip()
             if data == "capture picture now":
+                capture_thread = threading.Thread(target=capture)
+                wolf_thread = threading.Thread(target=run_wolf)
+                
                 wolf_thread.start()
                 capture_thread.start()
 
