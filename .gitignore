@@ -11,3 +11,4 @@ __pycache__/
 *.pyo
 zyb_txrx/recv
 zyb_txrx/transmit
+direwolf.conf
