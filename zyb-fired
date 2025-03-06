@@ -8,7 +8,7 @@ HOST = "127.0.0.1"
 PORT = 7887
 
 MORNING_TIME = "07:00:00"
-NIGHT_TIME   = "16:32:00"
+NIGHT_TIME   = "17:00:00"
 
 def main():
     try:
@@ -27,7 +27,7 @@ def main():
             print("Capturing image..")
             event = "capture picture now"
             client_sock.send(event.encode())
-        else: time.sleep(0.2)
+        else: time.sleep(0.1)
     
 
 
