@@ -10,11 +10,12 @@
 #define ZYB_PATH "cap_image/image.zyb"
 
 int main(int argc, char **argv) {
+	int loop_flag = 0;
 
 	char *filepath = (char *)malloc(strlen(ZYB_PATH) + 1);
 	strcpy(filepath, ZYB_PATH);
 	
-	while(1) {
+	do {
 		FILE *file = fopen(filepath, "w");
 		printf("Image will be saved as: %s\n", filepath);
 
@@ -40,7 +41,7 @@ int main(int argc, char **argv) {
 		int less_recvd = 250 - frames_recvd;
 		printf("Finished with: %d frames missing!\n", less_recvd);
 		fclose(file);
-	}
+	} while ( loop_flag == 1 );
 
 	return 0;
 }
