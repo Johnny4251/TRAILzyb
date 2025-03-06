@@ -17,9 +17,9 @@ def capture():
 
 def start_server():
     addr = (HOST, PORT)
-    serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     try:
+        serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         serv_sock.bind(addr)
         serv_sock.listen(1)
     except Exception as e:
@@ -66,4 +66,5 @@ def start_server():
 
 
 if __name__ == "__main__":
-	start_server()
+    while True:
+        start_server()
