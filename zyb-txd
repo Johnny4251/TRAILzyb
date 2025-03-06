@@ -45,8 +45,9 @@ def start_server():
                 
                 wolf_thread.join()
                 capture_thread.join()
-            elif data == "exit":
-                break
+
+                print("threads joined")
+            elif data == "exit": break
             else: 
                 print("bad frame")
                 response = "invalid event"
