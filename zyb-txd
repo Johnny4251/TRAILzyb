@@ -43,7 +43,6 @@ def start_server():
 
                 print("threads fired")               
                 
-                wolf_thread.join()
                 capture_thread.join()
 
                 print("threads joined")
