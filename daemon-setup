@@ -16,7 +16,8 @@ echo "Creating systemd service file at $SERVICE_FILE..."
 sudo bash -c "cat > $SERVICE_FILE" <<EOL
 [Unit]
 Description=$SERVICE_NAME Service
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 WorkingDirectory=$CWD
@@ -34,6 +35,10 @@ Environment="XDG_RUNTIME_DIR=/run/user/1000"
 
 [Install]
 WantedBy=multi-user.target
+[Unit]
+Description=zybtxd Service
+After=network-online.target
+Wants=network-online.target
 EOL
 
 echo "Setting executable permissions..."
@@ -65,9 +70,11 @@ SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
 echo "Creating systemd service file at $SERVICE_FILE..."
 
 sudo bash -c "cat > $SERVICE_FILE" <<EOL
+
 [Unit]
 Description=$SERVICE_NAME Service
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 WorkingDirectory=$CWD
