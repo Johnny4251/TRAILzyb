@@ -41,3 +41,6 @@ echo "Making files"
 cd zyb_txrx
 make
 cd ..
+
+echo "setting up daemon"
+./daemon-setup
