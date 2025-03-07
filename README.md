@@ -21,13 +21,24 @@ Part 97 rules & regulations.
 
 ## Installation
 
-To build and install, execute the following:
+To build and install **mobile stations**, execute the following:
+```sh
+git clone https://github.com/Johnny4251/TRAILzyb
+cd TRAILzyb
+chmod +x install-mobile.sh
+sudo ./install-mobile.sh
+```
+
+To build and install for **general purpose stations**, execute the following:
 ```sh
 git clone https://github.com/Johnny4251/TRAILzyb
 cd TRAILzyb
 chmod +x install.sh
 sudo ./install.sh
 ```
+
+Ensure Direwolf AX.25 Software TNC is installed and active during use. The Direwolf project can be found at [Direwolf GitHub Repository](https://github.com/wb2osz/direwolf). 
+
 
 Ensure Direwolf AX.25 Software TNC is installed and active during use. The Direwolf project can be found at [Direwolf GitHub Repository](https://github.com/wb2osz/direwolf). 
 
