@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+
+import os
+import threading
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP) 
+
+BUFFER_LEN = 1024
+
+def run_wolf():
+    os.system('direwolf')
+
+def capture():
+    os.system('./run')
+
+def event_callback(channel):
+    if GPIO.input(channel) == GPIO.HIGH:
+        print("Button pressed, starting capture and direwolf...")
+        capture_thread = threading.Thread(target=capture)
+        wolf_thread = threading.Thread(target=run_wolf)
+        
+        wolf_thread.start()
+        capture_thread.start()
+        
+        capture_thread.join()
+        print("Capture complete")
+        wolf_thread.join()
+        print("Direwolf process complete")
+
+def listen_to_gpio():
+    GPIO.add_event_detect(18, GPIO.FALLING, callback=event_callback, bouncetime=300)
+    try:
+        while True:
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        print("Clean exit")
+
+if __name__ == "__main__":
+    listen_to_gpio()
+

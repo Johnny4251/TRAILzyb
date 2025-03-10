@@ -27,11 +27,11 @@ sudo make install
 cd ..
 
 echo "Defining Executables"
-chmod +x zyb-fired
+chmod +x zyb-fireGPIO
 chmod +x daemon-logs
 chmod +x zybd
 chmod +x run
-chmod +x daemon-setup
+chmod +x daemon-setupMOBILE
 chmod +x capture
 cd zyb_txrx/cap_image
 chmod +x clear_cache
