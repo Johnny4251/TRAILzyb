@@ -8,7 +8,7 @@ import time
 BCM_INPUT_PIN = 17
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(BCM_INPUT_PIN, GPIO.IN
+GPIO.setup(BCM_INPUT_PIN, GPIO.IN)
 
 def run_wolf():
     os.system('direwolf')
