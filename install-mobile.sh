@@ -43,4 +43,4 @@ make
 cd ..
 
 echo "setting up daemon"
-./daemon-setup
+./daemon-setup_mobile
