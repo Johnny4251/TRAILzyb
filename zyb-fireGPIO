@@ -5,10 +5,10 @@ import threading
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP) 
+BCM_INPUT_PIN = 10
 
-BUFFER_LEN = 1024
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BCM_INPUT_PIN, GPIO.IN)  # GPIO10, which is Pin 19 on a pi 3b+ board
 
 def run_wolf():
     os.system('direwolf')
@@ -16,24 +16,22 @@ def run_wolf():
 def capture():
     os.system('./run')
 
-def event_callback(channel):
-    if GPIO.input(channel) == GPIO.HIGH:
-        print("Button pressed, starting capture and direwolf...")
-        capture_thread = threading.Thread(target=capture)
-        wolf_thread = threading.Thread(target=run_wolf)
-        
-        wolf_thread.start()
-        capture_thread.start()
-        
-        capture_thread.join()
-        print("Capture complete")
-        wolf_thread.join()
-        print("Direwolf process complete")
-
 def listen_to_gpio():
-    GPIO.add_event_detect(18, GPIO.FALLING, callback=event_callback, bouncetime=300)
     try:
         while True:
+            if GPIO.input(10) == GPIO.HIGH:
+                print("GPIO10 is HIGH, starting capture and direwolf...")
+                capture_thread = threading.Thread(target=capture)
+                wolf_thread = threading.Thread(target=run_wolf)
+
+                wolf_thread.start()
+                capture_thread.start()
+                
+                capture_thread.join()
+                print("Capture complete")
+                wolf_thread.join()
+                print("Direwolf process complete")
+
             time.sleep(0.1)
     except KeyboardInterrupt:
         GPIO.cleanup()
@@ -41,4 +39,3 @@ def listen_to_gpio():
 
 if __name__ == "__main__":
     listen_to_gpio()
-
