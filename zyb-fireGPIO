@@ -1,3 +1,4 @@
+#!/bin/python3
 import time
 import os
 import threading
@@ -6,7 +7,6 @@ import RPi.GPIO as GPIO
 BCM_INPUT_PIN = 17
 
 GPIO.setmode(GPIO.BCM)
-# Use a pull-down resistor to avoid floating state
 GPIO.setup(BCM_INPUT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def run_wolf():
