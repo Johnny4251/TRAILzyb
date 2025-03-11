@@ -15,10 +15,13 @@ echo "Creating systemd service file at $SERVICE_FILE..."
 
 sudo bash -c "cat > $SERVICE_FILE" <<EOL
 [Unit]
-Description=$SERVICE_NAME Service
+After=network-online.target multi-user.target
+Wants=network-online.target
+
 
 [Service]
 WorkingDirectory=$CWD
+ExecStartPre=/bin/sleep 10
 ExecStart=$CWD/$EXECUTABLE
 Restart=always
 RestartSec=10
