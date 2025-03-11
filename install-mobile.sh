@@ -31,7 +31,7 @@ chmod +x zyb-fireGPIO
 chmod +x daemon-logs
 chmod +x zybd
 chmod +x run
-chmod +x daemon-setupMOBILE
+chmod +x daemon-setup-mobile.sh
 chmod +x capture
 cd zyb_txrx/cap_image
 chmod +x clear_cache

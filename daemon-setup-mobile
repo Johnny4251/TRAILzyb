@@ -14,10 +14,6 @@ SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
 echo "Creating systemd service file at $SERVICE_FILE..."
 
 sudo bash -c "cat > $SERVICE_FILE" <<EOL
-[Unit]
-After=network-online.target multi-user.target
-Wants=network-online.target
-
 
 [Service]
 WorkingDirectory=$CWD
@@ -37,8 +33,8 @@ Environment="XDG_RUNTIME_DIR=/run/user/1000"
 [Install]
 WantedBy=multi-user.target
 [Unit]
-Description=zybtxd Service
-After=network-online.target
+Description=ZYB GPIO Service
+After=network-online.target multi-user.target
 Wants=network-online.target
 EOL
 
