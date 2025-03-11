@@ -1,14 +1,13 @@
-#!/usr/bin/python3
-
+import time
 import os
 import threading
 import RPi.GPIO as GPIO
-import time
 
 BCM_INPUT_PIN = 17
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(BCM_INPUT_PIN, GPIO.IN)
+# Use a pull-down resistor to avoid floating state
+GPIO.setup(BCM_INPUT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def run_wolf():
     os.system('direwolf')
@@ -19,7 +18,11 @@ def capture():
 def listen_to_gpio():
     try:
         while True:
-            if GPIO.input(BCM_INPUT_PIN) == GPIO.HIGH:
+            time.sleep(5)
+            state = GPIO.input(BCM_INPUT_PIN)
+            print(f"GPIO{BCM_INPUT_PIN} state: {'HIGH' if state else 'LOW'}")
+            
+            if state == GPIO.HIGH:
                 print(f"GPIO{BCM_INPUT_PIN} is HIGH, starting capture and direwolf...")
                 capture_thread = threading.Thread(target=capture)
                 wolf_thread = threading.Thread(target=run_wolf)
@@ -32,10 +35,10 @@ def listen_to_gpio():
                 wolf_thread.join()
                 print("Direwolf process complete")
 
-            time.sleep(0.1)
     except KeyboardInterrupt:
         GPIO.cleanup()
         print("Clean exit")
 
 if __name__ == "__main__":
     listen_to_gpio()
+
