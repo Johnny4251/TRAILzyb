@@ -1,6 +1,5 @@
 /*
  * Author:	John Pertell
- * Date: 	04.29.24
 */
 
 #include <stdio.h>
