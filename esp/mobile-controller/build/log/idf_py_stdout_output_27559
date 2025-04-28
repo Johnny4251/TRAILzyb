@@ -1,0 +1,18 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/johnny/git/TRAILzyb/esp/mobile-controller/build/bootloader/esp-idf/esptool_py && /home/johnny/.espressif/python_env/idf5.5_py3.12_env/bin/python /home/johnny/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/johnny/git/TRAILzyb/esp/mobile-controller/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/mobile-controller.c.obj
+[4/9] Linking C static library esp-idf/main/libmain.a
+[5/9] Completed 'bootloader'
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable mobile-controller.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.9.dev5
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/johnny/git/TRAILzyb/esp/mobile-controller/build/mobile-controller.bin
+[9/9] cd /home/johnny/git/TRAILzyb/esp/mobile-controller/build/esp-idf/esptool_py && /home/johnny/.espressif/python_env/idf5.5_py3.12_env/bin/python /home/johnny/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/johnny/git/TRAILzyb/esp/mobile-controller/build/partition_table/partition-table.bin /home/johnny/git/TRAILzyb/esp/mobile-controller/build/mobile-controller.bin
+mobile-controller.bin binary size 0x2bcc0 bytes. Smallest app partition is 0x100000 bytes. 0xd4340 bytes (83%) free.

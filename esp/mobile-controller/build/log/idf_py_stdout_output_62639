@@ -1,0 +1,78 @@
+Command: /home/johnny/.espressif/python_env/idf5.5_py3.12_env/bin/python /home/johnny/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/johnny/git/TRAILzyb/esp/mobile-controller/build/mobile-controller.elf /home/johnny/git/TRAILzyb/esp/mobile-controller/build/bootloader/bootloader.elf -m '/home/johnny/.espressif/python_env/idf5.5_py3.12_env/bin/python' '/home/johnny/esp/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6328
+load:0x40078000,len:15852
+ho 0 tail 12 room 4
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5-dev-1860-g0d6099ec53-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Mar  8 2025 21:25:30[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (36) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (39) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (51) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (73) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (79) boot: End of partition table[0m
+[0;32mI (83) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0aaa8h ( 43688) map[0m
+[0;32mI (105) esp_image: segment 1: paddr=0001aad0 vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (105) esp_image: segment 2: paddr=0001aaf4 vaddr=3ffb0000 size=023c4h (  9156) load[0m
+[0;32mI (112) esp_image: segment 3: paddr=0001cec0 vaddr=40080000 size=03158h ( 12632) load[0m
+[0;32mI (122) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=161b8h ( 90552) map[0m
+[0;32mI (155) esp_image: segment 5: paddr=000361e0 vaddr=40083158 size=09e48h ( 40520) load[0m
+[0;32mI (177) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (178) boot: Disabling RNG early entropy source...[0m
+[0;32mI (188) cpu_start: Multicore app[0m
+[0;32mI (196) cpu_start: Pro cpu start user code[0m
+[0;32mI (196) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (196) app_init: Application information:[0m
+[0;32mI (196) app_init: Project name:     mobile-controller[0m
+[0;32mI (201) app_init: App version:      257bbb1[0m
+[0;32mI (205) app_init: Compile time:     Mar  9 2025 21:14:07[0m
+[0;32mI (210) app_init: ELF file SHA256:  fc7c3bd3c...[0m
+[0;32mI (214) app_init: ESP-IDF:          v5.5-dev-1860-g0d6099ec53-dirty[0m
+[0;32mI (220) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (224) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (228) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (232) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (239) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (243) heap_init: At 3FFB2D30 len 0002D2D0 (180 KiB): DRAM[0m
+[0;32mI (249) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (254) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (260) heap_init: At 4008CFA0 len 00013060 (76 KiB): IRAM[0m
+[0;32mI (266) spi_flash: detected chip: generic[0m
+[0;32mI (269) spi_flash: flash io: dio[0m
+[0;33mW (271) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (284) main_task: Started on CPU0[0m
+[0;32mI (294) main_task: Calling app_main()[0m
+[0;32mI (294) gpio: GPIO[19]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (294) gpio: GPIO[22]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (304) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (314) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (314) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (324) STATE MACHINE: State machine started![0m
+[0;32mI (1834) STATE MACHINE: Transitioning from 0 to 1 due to event 0[0m
+[0;32mI (1834) STATE MACHINE: State changed from 0 to 1[0m
+[0;32mI (1884) STATE MACHINE: Entering state: 1[0m
+[0;32mI (1884) gpio: GPIO[19]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (1884) gpio: GPIO[22]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (1884) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (1894) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (1904) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;33mW (1914) ledc: GPIO 23 is not usable, maybe conflict with others[0m
+[0;32mI (31924) STATE MACHINE: Transitioning from 1 to 2 due to event 2[0m
+[0;32mI (31924) STATE MACHINE: State changed from 1 to 2[0m
+[0;32mI (31974) STATE MACHINE: Entering state: 2[0m
+[0;32mI (61974) STATE MACHINE: Transitioning from 2 to 3 due to event 3[0m
+[0;32mI (61974) STATE MACHINE: State changed from 2 to 3[0m
+[0;32mI (62024) STATE MACHINE: Entering state: 3[0m

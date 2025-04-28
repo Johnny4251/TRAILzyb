@@ -1,0 +1,2 @@
+source /home/johnny/git/TRAILzyb/esp/mobile-controller/build/bootloader/gdbinit/symbols
+source /home/johnny/git/TRAILzyb/esp/mobile-controller/build/bootloader/gdbinit/connect

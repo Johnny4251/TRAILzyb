@@ -1,0 +1,16 @@
+Command: /home/johnny/.espressif/python_env/idf5.5_py3.12_env/bin/python /home/johnny/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/johnny/git/TRAILzyb/esp/mobile-controller/build/mobile-controller.elf /home/johnny/git/TRAILzyb/esp/mobile-controller/build/bootloader/bootloader.elf -m '/home/johnny/.espressif/python_env/idf5.5_py3.12_env/bin/python' '/home/johnny/esp/esp-idf/tools/idf.py'
+[0;33m--- esp-idf-monitor 1.5.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40080400: _invalid_pc_placeholder at /home/johnny/esp/esp-idf/components/xtensa/xtensa_vectors.S:2235
+[0m
+[0;33m--- 0x40080638: call_start_cpu0 at /home/johnny/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x400d88c2: task_wdt_timeout_handling at /home/johnny/esp/esp-idf/components/esp_system/task_wdt/task_wdt.c:430
+0x400d8c84: task_wdt_isr at /home/johnny/esp/esp-idf/components/esp_system/task_wdt/task_wdt.c:503
+0x40082e1d: _xt_lowint1 at /home/johnny/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x40084321: esp_crosscore_int_send_yield at /home/johnny/esp/esp-idf/components/esp_system/crosscore_int.c:121
+0x40087a52: vTaskDelay at /home/johnny/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:1611 (discriminator 1)
+0x400d670e: machine at /home/johnny/git/TRAILzyb/esp/mobile-controller/main/mobile-controller.c:315
+0x40085fbd: vPortTaskWrapper at /home/johnny/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0m
