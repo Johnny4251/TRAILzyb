@@ -14,6 +14,7 @@ may want to provide. Operating TrailZYB requires an FCC amateur radio license wh
 Part 97 rules & regulations.
 
 ## Current Supported Operating Systems
+- Raspberry Pi OS v6.6 (mobile stations)
 - Ubuntu v24.04.1 desktop
 
 ## Current Supported Software Terminal Node Controller(TNC)
