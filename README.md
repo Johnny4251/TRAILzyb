@@ -13,6 +13,8 @@ utilities that encodes, transmits, decodes, and displays images alongside any ot
 may want to provide. Operating TrailZYB requires an FCC amateur radio license which is subject to FCC
 Part 97 rules & regulations.
 
+[Capstone Report](Capstone_Report.pdf)
+
 ## Current Supported Operating Systems
 - Raspberry Pi OS v6.6 (mobile stations)
 - Ubuntu v24.04.1 desktop
